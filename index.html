@@ -1,0 +1,74 @@
+import React, { useState } from 'react';
+import { AlertCircle, MapPin, ExternalLink } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+
+const TacoBellFansite = () => {
+  const [showLocationAlert, setShowLocationAlert] = useState(false);
+
+  const handleFindLocation = () => {
+    setShowLocationAlert(true);
+    // In a real implementation, this would use the Geolocation API
+    // to find the nearest Taco Bell location
+  };
+
+  const handleTacoBellWebsite = () => {
+    // In a real implementation, this would be replaced with the actual Taco Bell URL
+    window.location.href = 'https://www.tacobell.com';
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto p-6 space-y-6">
+      {/* Header */}
+      <div className="text-center space-y-4">
+        <h1 className="text-4xl font-bold text-purple-600">I Love Taco Bell!</h1>
+        <img 
+          src="/api/placeholder/400/200"
+          alt="I Love Taco Bell Logo"
+          className="mx-auto rounded-lg shadow-lg"
+        />
+      </div>
+
+      {/* Buttons Container */}
+      <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+        {/* Find Location Button */}
+        <button
+          onClick={handleFindLocation}
+          className="flex items-center justify-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors"
+        >
+          <MapPin size={20} />
+          Find Nearest Taco Bell
+        </button>
+
+        {/* Website Button */}
+        <button
+          onClick={handleTacoBellWebsite}
+          className="flex items-center justify-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors"
+        >
+          <ExternalLink size={20} />
+          Visit Taco Bell Website
+        </button>
+      </div>
+
+      {/* Location Alert */}
+      {showLocationAlert && (
+        <Alert className="mt-4">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Location Services</AlertTitle>
+          <AlertDescription>
+            You should know where your local Taco Bell is! Enable location services to find the nearest restaurant.
+          </AlertDescription>
+        </Alert>
+      )}
+
+      {/* Video Section */}
+      <div className="mt-8 bg-gray-100 p-6 rounded-lg">
+        <h2 className="text-2xl font-bold mb-4">Featured Taco Bell Content</h2>
+        <div className="aspect-video bg-gray-300 rounded-lg flex items-center justify-center">
+          <p className="text-gray-600">Video Player Placeholder</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TacoBellFansite;
